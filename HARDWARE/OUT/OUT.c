@@ -79,6 +79,7 @@ void Ctrl_Relay(u8 RelayID,u8 Action)
 		}
 	}
 }
+//和上面的接口定义一样
 void Ctrl_Break(u8 RelayID,u8 Action)
 {
 	if(Action==1)
