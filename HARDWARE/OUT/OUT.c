@@ -4,27 +4,27 @@
 void Relay_Init(void)
 {
 	GPIO_InitTypeDef  GPIO_InitStructure;
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC|RCC_APB2Periph_GPIOD|RCC_APB2Periph_GPIOE|RCC_APB2Periph_GPIOG, ENABLE);	 //Ê¹ÄÜGPIOB¶Ë¿ÚÊ±ÖÓ
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC|RCC_APB2Periph_GPIOD|RCC_APB2Periph_GPIOE|RCC_APB2Periph_GPIOG, ENABLE);	 //ä½¿èƒ½GPIOBç«¯å£æ—¶é’Ÿ
 
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0|GPIO_Pin_1|GPIO_Pin_2|GPIO_Pin_3|
-																GPIO_Pin_4|GPIO_Pin_5|GPIO_Pin_6|GPIO_Pin_7;	//BEEP-->PB.8 ¶Ë¿ÚÅäÖÃ
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //ÍÆÍìÊä³ö
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;	 //ËÙ¶ÈÎª50MHz
-	GPIO_Init(GPIOD, &GPIO_InitStructure);	 //¸ù¾İ²ÎÊı³õÊ¼»¯GPIOB.8
+																GPIO_Pin_4|GPIO_Pin_5|GPIO_Pin_6|GPIO_Pin_7;	//BEEP-->PB.8 ç«¯å£é…ç½®
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //æ¨æŒ½è¾“å‡º
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;	 //é€Ÿåº¦ä¸º50MHz
+	GPIO_Init(GPIOD, &GPIO_InitStructure);	 //æ ¹æ®å‚æ•°åˆå§‹åŒ–GPIOB.8
 
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12|GPIO_Pin_13;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //ÍÆÍìÊä³ö
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;	 //ËÙ¶ÈÎª50MHz
-	GPIO_Init(GPIOG, &GPIO_InitStructure);	 //¸ù¾İ²Î
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //æ¨æŒ½è¾“å‡º
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;	 //é€Ÿåº¦ä¸º50MHz
+	GPIO_Init(GPIOG, &GPIO_InitStructure);	 //æ ¹æ®å‚
 	
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //ÍÆÍìÊä³ö
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;	 //ËÙ¶ÈÎª50MHz
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //æ¨æŒ½è¾“å‡º
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;	 //é€Ÿåº¦ä¸º50MHz
 	GPIO_Init(GPIOC, &GPIO_InitStructure);
 	
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2|GPIO_Pin_3|GPIO_Pin_4|GPIO_Pin_5;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //ÍÆÍìÊä³ö
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;	 //ËÙ¶ÈÎª50MHz
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //æ¨æŒ½è¾“å‡º
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;	 //é€Ÿåº¦ä¸º50MHz
 	GPIO_Init(GPIOE, &GPIO_InitStructure);
 }
 
@@ -50,7 +50,8 @@ u16  Get_Relay_State(void)
 	return Relay_state;
 }
 //RelayID:1~6
-//Action: 0¹Ø±Õ¼ÌµçÆ÷£»1´ò¿ª¼ÌµçÆ÷
+//Action: 0å…³é—­ç»§ç”µå™¨ï¼›1æ‰“å¼€ç»§ç”µå™¨
+//close    open  
 void Ctrl_Relay(u8 RelayID,u8 Action)
 {
 	if(Action==1)
