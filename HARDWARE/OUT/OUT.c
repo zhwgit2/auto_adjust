@@ -79,6 +79,7 @@ void Ctrl_Relay(u8 RelayID,u8 Action)
 		}
 	}
 }
+//控制刹车
 void Ctrl_Break(u8 RelayID,u8 Action)
 {
 	if(Action==1)
