@@ -279,8 +279,8 @@ int main(void)
 				}
 				else if(AutoCalibration.StateCtrl==5)
 				{
-					Moter_Location_Task(Xid,1800,Calculate_XY[0]);  //移动X轴
-					Moter_Location_Task(Yid,1800,Calculate_XY[1]);  //移动Y轴
+					Moter_Location_Task(Xid,180,Calculate_XY[0]);  //移动X轴
+					Moter_Location_Task(Yid,180,Calculate_XY[1]);  //移动Y轴
 					delay_ms(1000);
 					delay_ms(1000);
 					AutoCalibration.StateCtrl=100;
@@ -290,14 +290,14 @@ int main(void)
 				{
 					Motor_Speed_Task(Punchid,(u16)Drill_Value[2]);  //启动钻孔电机，转速为设定值
 					//delay_ms(500);				
-					Moter_Location_Task(Zid,1800,Drill_Value[0]);  //Z轴移动至起钻位置
+					Moter_Location_Task(Zid,180,Drill_Value[0]);  //Z轴移动至起钻位置
 					while(Motor_Finsh_Flag(Zid,Drill_Value[0])==0) //等待到达目标位置
 						delay_ms(50);
 					Motor_Speed_Task(Punchid,(u16)(Drill_Value[2]*6));//钻孔转速为6倍设定值
 					Moter_Location_Task(Zid,Drill_Value[3],Drill_Value[1]);  //Z轴移动至止钻位置
 					while(Motor_Finsh_Flag(Zid,Drill_Value[1])==0) //等待到达目标位置
 						delay_ms(50);		
-					Moter_Location_Task(Zid,1800,XYZ_Location[2]);  //退回原来位置
+					Moter_Location_Task(Zid,180,XYZ_Location[2]);  //退回原来位置
 					while(Motor_Finsh_Flag(Zid,XYZ_Location[2])==0) //等待到达目标位置
 						delay_ms(50);
 					Motor_Speed_Task(Punchid,0);    //停止打孔轴
@@ -307,8 +307,8 @@ int main(void)
 				}
 				else if(AutoCalibration.StateCtrl==7)
 				{
-					Moter_Location_Task(Xid,1800,XYZ_Location[0]);  //移动X轴
-					Moter_Location_Task(Yid,1800,XYZ_Location[1]);  //移动Y轴
+					Moter_Location_Task(Xid,180,XYZ_Location[0]);  //移动X轴
+					Moter_Location_Task(Yid,180,XYZ_Location[1]);  //移动Y轴
 					AutoCalibration.StateCtrl=100;
 					while(Motor_Finsh_Flag(Xid,XYZ_Location[0])==0) //等待到达目标位置
 						delay_ms(50);
@@ -318,14 +318,14 @@ int main(void)
 				}
 				else if(AutoCalibration.StateCtrl==8)    //打孔正确，上游丝角度
 				{
-					Moter_Location_Task(Xid,1800,XYZ_Location[3]);  //移动X轴
-					Moter_Location_Task(Yid,1800,XYZ_Location[4]);  //移动Y轴
+					Moter_Location_Task(Xid,180,XYZ_Location[3]);  //移动X轴
+					Moter_Location_Task(Yid,180,XYZ_Location[4]);  //移动Y轴
 					while(Motor_Finsh_Flag(Xid,XYZ_Location[3])==0) //等待到达目标位置
 						delay_ms(50);
 					while(Motor_Finsh_Flag(Yid,XYZ_Location[4])==0) //等待到达目标位置
 						delay_ms(50);	
 					
-					Moter_Location_Task(Zid,1800,XYZ_Location[2]);  //移动Z轴
+					Moter_Location_Task(Zid,180,XYZ_Location[2]);  //移动Z轴
 					while(Motor_Finsh_Flag(Zid,XYZ_Location[2])==0) //等待到达目标位置
 						delay_ms(50);
 
@@ -337,15 +337,15 @@ int main(void)
 				}
 				else if(AutoCalibration.StateCtrl==9)
 				{
-					Moter_Location_Task(ZBid,120,(u16)Angle_Value);  
+					Moter_Location_Task(ZBid,12,(u16)Angle_Value);  
 					Ctrl_Relay(JE,Close);
 					delay_ms(1000);	
-					Moter_Location_Task(ZBid,120,(u16)Angle_Value+180);
+					Moter_Location_Task(ZBid,12,(u16)Angle_Value+180);
 					Ctrl_Relay(JF,Close);
 					delay_ms(1000);
 					delay_ms(300);				
-					Moter_Location_Task(Xid,1800,0);  //移动X轴   //速度1800
-					Moter_Location_Task(Yid,1800,0);  //移动Y轴
+					Moter_Location_Task(Xid,180,0);  //移动X轴   //速度1800
+					Moter_Location_Task(Yid,180,0);  //移动Y轴
 					Ctrl_Relay(JA,Close);
 					Ctrl_Relay(JB,Close);
 					
@@ -355,15 +355,15 @@ int main(void)
 				}
 				else if(AutoCalibration.StateCtrl==10)  //打孔错误
 				{
-					Moter_Location_Task(Xid,1800,XYZ_Location[0]);  //移动X轴
-					Moter_Location_Task(Yid,1800,XYZ_Location[1]);  //移动Y轴
+					Moter_Location_Task(Xid,180,XYZ_Location[0]);  //移动X轴
+					Moter_Location_Task(Yid,180,XYZ_Location[1]);  //移动Y轴
 					
 					while(Motor_Finsh_Flag(Xid,XYZ_Location[0])==0) //等待到达目标位置
 						delay_ms(50);
 					while(Motor_Finsh_Flag(Yid,XYZ_Location[1])==0) //等待到达目标位置
 						delay_ms(50);
 					
-					Moter_Location_Task(Zid,1800,XYZ_Location[2]);
+					Moter_Location_Task(Zid,180,XYZ_Location[2]);
 					
 					AutoCalibration.BeginAutoCalibrationFlag=0;  //等待	重新启动自动调校
 					AutoCalibration.PauseAutoCalibrationFlag=1;
